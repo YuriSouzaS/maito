@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<main class="container">
+    <div class="form-signin w-100 m-auto" >
+            <form action="homeSchool" method = "POST"  novalidate>
+            <img class="mb-4" src="{{ url_for('static', filename='img/logo.png') }}" width="72" heigth="57">
+            <h1 class="h3 mb-3 fw-normal">
+                Criar conta
+            </h1>
+            <div class="form-floating mb-3">
+                <input name="escola" type="text" class="form-control" id="floatingInput" placeholder="School marco pasquin">
+                <label for="floatingInput">Nome da Escola</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input name="diretor" type="text" class="form-control" id="floatingInput" placeholder="Diretor">
+                <label for="floatingInput">Diretor</label>
+            </div>
+            <div class="row">
+                <div class="form-floating mb-3 col">
+                    <select name="tipo" class="form-select" aria-label="Default select example">
+                        <option  selected>Tipo de escola</option>
+                        <option value="Pública">Pública</option>
+                        <option value="Particular">Particular</option>
+                      </select>
+                </div>
+                <div class="form-floating mb-3 col">
+                    <select name="ensino" class="form-select" aria-label="Default select example">
+                        <option selected>Grau de ensino</option>
+                        <option value="Creche">Creche</option>
+                        <option value="Fundamental">Fundamental</option>
+                        <option value="Médio">Médio</option>
+                        <option value="Superior">Superior</option>
+                        <option value="Profissionalizantes">Profissionalizantes</option>
+                      </select>
+                </div>
+                <div class="form-floating mb-3 col">
+                    <select name="estado" class="form-select" aria-label="Default select example">
+                        <option selected>Estado</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pára</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio Janeiro</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>                    
+                      </select>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="form-floating mb-3 col">
+                    <label for="floatingInput">Município</label>
+                    <input name="cidade" type="text" class="form-control" id="floatingInput" placeholder="Município">
+                </div>
+                <div class="form-floating mb-3 col">
+                    <label for="floatingInput">CEP</label>
+                    <input name="cep" type="text" class="form-control" id="floatingInput" placeholder="12345-000">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="form-floating mb-3 col">
+                    <label for="floatingInput">Rua</label>
+                    <input name="rua" type="text" class="form-control" id="floatingInput" placeholder="Rua das flores">
+                </div>
+                
+                <div class="form-floating mb-3 col">
+                    <label for="floatingInput">Nº</label>
+                    <input name="numero_casa" type="text" class="form-control" id="floatingInput" placeholder="64">
+                </div>
+                <div class="form-floating mb-3 col">
+                    <label for="floatingInput">Senha</label>
+                    <input name="senha" type="password" class="form-control" id="floatingInput" placeholder="">
+                </div>
+            </div>
+            
+            <button class="btn btn-primary mb-3 " type="submit">Criar</button>
+            
+        </form>
+    </div>
+</main>
+{% endblock %}

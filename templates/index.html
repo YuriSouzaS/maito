@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block src %}
+<link type="text/css" href="{{ url_for('static', filename='base.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+
+<main class="container">
+    <div class="px-4 py-5 my-5 text-center">
+        <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='img/logo.png') }}" width="72" heigth="57">
+        <h1 class="display-6 fw-bold text-body-emphasis">Sistema Identificação Escolar</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Ipsum.
+            </p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Quem somos</button>
+                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Saiba mais sobre o SIE</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div class="b-example-divider"></div> -->
+    
+    <div class="container px-4 py-5">
+        <h2 class="display-5 pb-2 border-bottom text-center">3 Pilares do sistema</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center  fs-2 mb-3">
+                    <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='img/icon3.png') }}" width="40" heigth="40">
+                </div>
+                <h3 class="fs-2 text-body-emphasis">Instituições</h3>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                </p>
+                <a class="icon-link" href="#">Saiba mais...</a>
+            </div>
+            <div>
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center  fs-2 mb-3">
+                    <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='img/icon2.png') }}" width="40" heigth="40">
+                </div>
+                <h3 class="fs-2 text-body-emphasis">Responsavéis</h3>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                </p>
+                <a class="icon-link" href="#">Saiba mais...</a>
+            </div>
+            <div>
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center  fs-2 mb-3">
+                    <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='img/icon3.png') }}" width="40" heigth="40">
+                </div>
+                <h3 class="fs-2 text-body-emphasis">Seguraça publica</h3>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                </p>
+                <a class="icon-link" href="#">Saiba mais...</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="b-example-divider"></div> -->
+    
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">
+                Segurança de ponta
+                <span class="text-body-secondary">
+                    Protegendo quem mais importa
+                </span>
+            </h2>
+            <p class="lead">
+                Some great placeholder content for the first featurette here. Imagine some exciting prose here.
+            </p>
+        </div>
+        <div class="col-md-5">
+            <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{{ url_for('static', filename='img/sec.png') }}" width="500" heigth="500">
+        </div>
+    </div>
+</main>
+{% endblock  %}
