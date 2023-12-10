@@ -70,5 +70,10 @@ def homeSchool():
     # print(datas)
     return render_template('home_school.html', inst = inst )
 
+@app.route("/profileSchool")
+def profileSchool():
+    return render_template('profileSchool.html')
+
+
 if(__name__ == "__main__"):
     app.run(debug=True)
