@@ -10,17 +10,6 @@ def conecta_db():
   return con
 
 
-
-# Função para criar tabela no banco
-def criar_db(sql):
-  con = conecta_db()
-  cur = con.cursor()
-  cur.execute(sql)
-  con.commit()
-  con.close()
-
-
-
 # Função para inserir dados no banco
 def inserir_db(sql):
     con = conecta_db()

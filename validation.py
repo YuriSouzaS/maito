@@ -1,8 +1,4 @@
 import re
-# from db import serir_db
-
-# Corrigir erro na função validString
-
 
 class validacao(object):
     def __init__(self) -> None:
@@ -26,34 +22,40 @@ class validacao(object):
         return self.data
 
     def validString(self):
+        v = []
         # verifica se a numeros na string
         padroes = ["[0-9]"]
         verifique = [self.data[0], self.data[1], self.data[5]]
-        count = 0
-        for i in verifique:
-            print(f"Checking!... {i}")
+        for x in verifique:
             for padrao in padroes:
-                if re.search(padrao, i):
-                    print(f"Has a number: {i}")
-                    count += 1
-                    if count == len(verifique):
-                        return True
+                if re.search(padrao, x):
+                    # print(f"Has a number: {x}")
+                    v.append(True)
                 else:
-                    print('No occurrence.')
-                    count += 1
-                    if count == len(verifique):
-                        return False
-    
-    def validCep(self):
-        if len(self.data[6]) > 3 and len(self.data[6]) <= 7:
-            print(f"{self.data[6]}, size: {len(i)}")
+                    # print('No occurrence.')
+                    v.append(False)
+        
+        # print(v)
+        if v[0] or v[1] or v[2]:
+            return False
+        else:
             return True
+   
+    
+    def sizeCep(self):
+        if len(self.data[6]) <= 8:
+            # print(f"{self.data[6]}, size: {len(self.data[6])}")
+            return True
+        else:
+            return False
 
     
-    def validNum(self):
-        if len(self.data[6]) >= 1 and len(self.data[6]) <= 6:
-            print(f"{self.data[6]}, size: {len(i)}")
+    def sizeNum(self):
+        if len(self.data[8]) >= 1 and len(self.data[8]) <= 6:
+            print(f"{self.data[8]}, size: {len(self.data[8])}")
             return True
+        else:
+            return False
 
     
     # verifica o tamanho da string
@@ -73,6 +75,8 @@ class validacao(object):
             if i == self.data[2]:
                 # print(f"tipo: {i}")
                 return True
+            else:
+                return False
 
 
 
@@ -84,25 +88,11 @@ class validacao(object):
             if i  == self.data[4]:
                 # print(f"pass: {self.data[4]}")
                 return True
-
-
-    def main(self):
-        i = validacao()
-        i.setData("escola", "Chaga", "Publico", "medio", "SP", "Diadema", "12345090", "Sonia maria", "273", "123sdjs" )
-        if not i.validString:
-            print("validString pass:")
-        else:
-            print("erro: validStr")
-
-
+            else:
+                return False
 
 
 if __name__ == "__main__":
     i = validacao()
-    i.setData("escola", "Chaga", "Publico", "medio", "SP", "Diadema", "12345090", "Sonia maria", "273", "123sdjs" )
-    # d = i.getData()
-    # print(i.validSize())
-    # i.validUf()
-    print(i.validString())
-    # print(i.validTypeSchool())
-    # i.main()
+    i.setData("escola", "Chaga2", "ublico", "medio", "SP", "Diadema", "12345090", "Sonia maria", "", "123sdjs")
+    

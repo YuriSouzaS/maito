@@ -30,14 +30,6 @@ class Institution(object):
         return self.inst
        
     
-    def getInstitution(self):
-        getData = self.setInstitution()
-        return getData
-    
-
-    def getNome(self):
-        return self.nome
-    
     def setEndereco(self):
         endereco = {}
         endereco['estado'] = self.estado
