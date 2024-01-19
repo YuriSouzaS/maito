@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect
 import os
 import Institution 
+from db import inserir_db, conecta_db
 
 
 
@@ -41,8 +42,6 @@ def account():
 @app.route("/homeSchool", methods=['GET', 'POST'])
 def homeSchool():
     
-    datas = []
-    
     escola = request.form['escola']
     diretor = request.form['diretor']
     tipo = request.form['tipo']
@@ -52,22 +51,15 @@ def homeSchool():
     cep = request.form['cep']
     rua = request.form['rua']
     num = request.form['numero_casa']
+    email = request.form['email']
     senha = request.form['senha']
 
-    inst = Institution.Institution(escola, diretor, tipo, ensino, estado, cidade, cep, rua, num, senha)
-
-    datas.append(escola)
-    datas.append(diretor)
-    datas.append(tipo)
-    datas.append(ensino)
-    datas.append(estado)
-    datas.append(cidade)
-    datas.append(cep)
-    datas.append(rua)
-    datas.append(num)
-    datas.append(senha)
-
-    # print(datas)
+    # instancia da class institution
+    inst = Institution.Institution(escola, diretor, tipo, ensino, estado, cidade, cep, rua, num, email, senha)
+    
+    # Metodo que faz o envio ao banco
+    inserir_db(inst.nome, inst.diretor, inst.municipio, inst.cep, inst.rua, inst.numero, inst.email, inst.senha)
+    
     return render_template('home_school.html', inst = inst )
 
 @app.route("/profileSchool")

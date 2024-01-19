@@ -5,13 +5,21 @@ def conecta_db():
   con = psycopg2.connect(database="db_sie",
                         host="localhost",
                         user="postgres",
-                        password="088011",
+                        password="",
                         port="5433")
   return con
 
 
 # Função para inserir dados no banco
-def inserir_db(sql):
+def inserir_db(nome, diretor, municipio, cep, rua, numero, email, senha):
+   
+    sql = f'''
+            insert into public.institution 
+            (nome,diretor,municipio,cep,rua,numero,email,senha)
+            values
+            ('{nome}','{diretor}','{municipio}','{cep}','{rua}','{numero}','{email}','{senha}')
+        '''
+   
     con = conecta_db()
     cur = con.cursor()
     try:
