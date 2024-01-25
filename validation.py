@@ -4,7 +4,7 @@ class validacao(object):
     def __init__(self) -> None:
        self.data = []
 
-    def setData(self, nome: str, diretor: str, tipo: str, ensino: str, estado: str, municipio: str, cep: str, rua: str, numero: str, senha: str):
+    def setData(self, nome: str, diretor: str, tipo: str, ensino: str, estado: str, municipio: str, cep: str, rua: str, numero: str, email: str, senha: str):
         self.data.append(nome)
         self.data.append(diretor)
         self.data.append(tipo)
@@ -14,6 +14,7 @@ class validacao(object):
         self.data.append(cep)
         self.data.append(rua)
         self.data.append(numero)
+        self.data.append(email)
         self.data.append(senha)
 
 
@@ -21,11 +22,11 @@ class validacao(object):
         # retorna uma list com dados
         return self.data
 
-    def validString(self):
+    def hasNumber(self):
         v = []
         # verifica se a numeros na string
         padroes = ["[0-9]"]
-        verifique = [self.data[0], self.data[1], self.data[5]]
+        verifique = [ self.data[1], self.data[5] ]
         for x in verifique:
             for padrao in padroes:
                 if re.search(padrao, x):
@@ -36,37 +37,27 @@ class validacao(object):
                     v.append(False)
         
         # print(v)
-        if v[0] or v[1] or v[2]:
-            return False
+        if v[0] or v[1]:
+            return "Erro: Não deve conter numeros em Diretor ou Cidade."
         else:
             return True
    
     
-    def sizeCep(self):
+    def checkSizeCep(self):
         if len(self.data[6]) <= 8:
             # print(f"{self.data[6]}, size: {len(self.data[6])}")
             return True
         else:
-            return False
+            return "Erro: Digite o CEP com 8 Números, sem ponto ou traços."
 
     
-    def sizeNum(self):
+    def checkSizeNumber(self):
         if len(self.data[8]) >= 1 and len(self.data[8]) <= 6:
-            print(f"{self.data[8]}, size: {len(self.data[8])}")
+            # print(f"{self.data[8]}, size: {len(self.data[8])}")
             return True
         else:
-            return False
+            return "Erro: Máximo são 6 digitos."
 
-    
-    # verifica o tamanho da string
-    def validSize(self):
-        for i in self.data:            
-            if len(i) > 3 and len(i) < 30:
-                # print(f"Pass: {i}, size: {len(i)}")
-                return True
-            else:
-                # print(f"Pass: {i}, size: {len(i)}")
-                return False
             
     def validTypeSchool(self):
         typeSchool = ["Publico", "Particular"]
@@ -75,8 +66,17 @@ class validacao(object):
             if i == self.data[2]:
                 # print(f"tipo: {i}")
                 return True
-            else:
-                return False
+            
+            
+
+    def typeTeaching(self):
+        typeSchool = ["Creche", "Fundamental", "Médio", "Superior", "Profissionalizantes"]
+       
+        for i in typeSchool:
+            if i == self.data[3]:
+                # print(f"tipo: {i}")
+                return True
+            
 
 
 
@@ -88,11 +88,9 @@ class validacao(object):
             if i  == self.data[4]:
                 # print(f"pass: {self.data[4]}")
                 return True
-            else:
-                return False
 
 
 if __name__ == "__main__":
     i = validacao()
-    i.setData("escola", "Chaga2", "ublico", "medio", "SP", "Diadema", "12345090", "Sonia maria", "", "123sdjs")
-    
+    i.setData("escola", "Chaga344", "Publico", "Creche", "SP", "Diadema", "123405090", "Sonia maria", "8229990", "email.com.br", "123sdjs")
+    print(i.validUf())

@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect
 import os
 import Institution 
 from db import inserir_db, conecta_db
+from validation import *
 
 
 
@@ -54,6 +55,7 @@ def homeSchool():
     email = request.form['email']
     senha = request.form['senha']
 
+    
     # instancia da class institution
     inst = Institution.Institution(escola, diretor, tipo, ensino, estado, cidade, cep, rua, num, email, senha)
     
