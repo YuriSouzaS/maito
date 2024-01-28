@@ -3,28 +3,33 @@
 {% block body %}
 <main class="container">
     <div class="form-signin w-100 m-auto" >
-            <form action="homeSchool" method = "POST"  novalidate>
+        <form action="homeSchool" method = "POST"  novalidate>
+            
             <img class="mb-4" src="{{ url_for('static', filename='img/logo.png') }}" width="72" heigth="57">
+            
             <h1 class="h3 mb-3 fw-normal">
                 Criar conta
             </h1>
-            <div class="form-floating mb-3">
-                <input name="escola" type="text" class="form-control" id="floatingInput" placeholder="School marco pasquin">
-                <label for="floatingInput">Nome da Escola</label>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input name="escola" type="text" class="form-control"  placeholder="Nome da Escola">
+                </div>
+                <div class="col-md-6">
+                    <input name="diretor" type="text" class="form-control"placeholder="Diretor">
+                </div>
             </div>
-            <div class="form-floating mb-3">
-                <input name="diretor" type="text" class="form-control" id="floatingInput" placeholder="Diretor">
-                <label for="floatingInput">Diretor</label>
-            </div>
-            <div class="row">
-                <div class="form-floating mb-3 col">
+            
+            <br>
+
+            <div class="row g-3">
+                <div class="col-md-6">
                     <select name="tipo" class="form-select" aria-label="Default select example">
                         <option  selected>Tipo de escola</option>
                         <option value="1">Pública</option>
                         <option value="2">Particular</option>
-                      </select>
+                        </select>
                 </div>
-                <div class="form-floating mb-3 col">
+                <div class="col-md-6">
                     <select name="ensino" class="form-select" aria-label="Default select example">
                         <option selected>Grau de ensino</option>
                         <option value="1">Creche</option>
@@ -34,9 +39,13 @@
                         <option value="5">Profissionalizante</option>
                         <option value="6">Técnico</option>
                         <option value="7">Curso livre</option>
-                      </select>
+                        </select>
                 </div>
-                <div class="form-floating mb-3 col">
+                
+            </div>
+            <br>
+            <div class="row g-3">
+                <div class="col-md-3">
                     <select name="estado" class="form-select" aria-label="Default select example">
                         <option selected>Estado</option>
                         <option value="1">Acre</option>
@@ -66,46 +75,30 @@
                         <option value="25">Sergipe</option>
                         <option value="26">Tocantins</option>                    
                         <option value="27">Distrito Federal</option>
-                      </select>
+                        </select>
+                </div>
+                <div class="col-md-6">
+                    <input name="cidade" type="text" class="form-control" placeholder="Cidade">
+                </div>
+                <div class="col-md-3">
+                    <input name="cep" type="text" class="form-control"  placeholder="12345-000">
+                </div>
+                <div class="col-md-10">
+                    <input name="rua" type="text" class="form-control"  placeholder="Rua das flores">
+                </div>
+                <div class="col-md-2">
+                    <input name="numero_casa" type="text" class="form-control" placeholder="N°">
+                </div>
+                <div class="col-md-6">
+                    <input name="email" type="email" class="form-control"  placeholder="Exemplo@exemplo.com">
+                </div>
+                <div class="col-md-6">
+                    <input name="senha" type="password" class="form-control" placeholder="Senha">
                 </div>
             </div>
-            
-            <div class="row">
-                <div class="form-floating mb-3 col">
-                    <label for="floatingInput">Município</label>
-                    <input name="cidade" type="text" class="form-control" id="floatingInput" placeholder="Município">
-                </div>
-                <div class="form-floating mb-3 col">
-                    <label for="floatingInput">CEP</label>
-                    <input name="cep" type="text" class="form-control" id="floatingInput" placeholder="12345-000">
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="form-floating mb-3 col">
-                    <label for="floatingInput">Rua</label>
-                    <input name="rua" type="text" class="form-control" id="floatingInput" placeholder="Rua das flores">
-                </div>
-                
-                <div class="form-floating mb-3 col">
-                    <label for="floatingInput">Nº</label>
-                    <input name="numero_casa" type="text" class="form-control" id="floatingInput" placeholder="64">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-floating mb-3 col">
-                    <label for="floatingInput">Email</label>
-                    <input name="email" type="email" class="form-control" id="floatingInput" placeholder="Exemplo@exemplo.com">
-                </div>
-                <div class="form-floating mb-3 col">
-                    <label for="floatingInput">Senha</label>
-                    <input name="senha" type="password" class="form-control" id="floatingInput" placeholder="">
-                </div>
-            </div>
-            
-            <button class="btn btn-primary mb-3 " type="submit">Criar</button>
-            
-        </form>
+            <hr>
+            <button class="btn btn-primary md-3 " type="submit">Criar</button>
+    </form>
     </div>
 </main>
 {% endblock %}
