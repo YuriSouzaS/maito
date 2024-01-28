@@ -59,6 +59,25 @@ def homeSchool():
     
     return render_template('home_school.html', inst = inst )
 
+
+@app.route("/homeResponsavel", methods=['GET', 'POST'])
+def homeResponsavel():
+    
+    nome = request.form['firstname']
+    sobrenome = request.form['lastname']
+    data_nascimento = request.form['data_nascimento']
+    documento = request.form['n_documento']
+    email = request.form['email']
+    senha = request.form['senha']
+    qrcode = request.form['qrcode']
+    
+    # instancia da class institution
+    inst = Institution.Institution()
+    # Metodo que faz o envio ao banco
+    inserir_db()
+    
+    return render_template('home_school.html', inst = inst )
+
 @app.route("/profileSchool")
 def profileSchool():
     return render_template('profileSchool.html')
