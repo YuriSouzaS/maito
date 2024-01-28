@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect
 import os
-import Institution 
+import config 
 from db import inserir_db, conecta_db
 from validation import *
 
@@ -53,7 +53,7 @@ def homeSchool():
 
     
     # instancia da class institution
-    inst = Institution.Institution(escola, diretor, classificacao, ensino, estado, cidade, cep, rua, num, email, senha)
+    inst = config.Institution(escola, diretor, classificacao, ensino, estado, cidade, cep, rua, num, email, senha)
     # Metodo que faz o envio ao banco
     inserir_db(inst.nome, inst.diretor, inst.tipo, inst.ensino, inst.estado, inst.municipio, inst.cep, inst.rua, inst.numero, inst.email, inst.senha)
     
@@ -69,14 +69,14 @@ def homeResponsavel():
     documento = request.form['n_documento']
     email = request.form['email']
     senha = request.form['senha']
-    qrcode = request.form['qrcode']
+    usr_qrcode = request.form['qrcode']
     
-    # instancia da class institution
-    inst = Institution.Institution()
-    # Metodo que faz o envio ao banco
-    inserir_db()
+    # instancia da class Responsavel
+    resp = config.Responsavel(nome, sobrenome, data_nascimento, documento, email, senha, usr_qrcode )
+    # Metodo faz o envio ao banco
+    inserir_db(resp.nome, resp.sobrenome, resp.data_nascimento, resp.documento, resp.email, resp.senha, usr_qrcode)
     
-    return render_template('home_school.html', inst = inst )
+    return render_template('home_responsavel.html', resp = resp )
 
 @app.route("/profileSchool")
 def profileSchool():

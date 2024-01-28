@@ -1,5 +1,15 @@
 from db import inserir_db, conecta_db
 
+class Responsavel(object):
+    def __init__(self,  nome: str, sobrenome: str, data_nascimento: str, documento: int, email: str, senha: str, qrcode: str):
+        self.nome = nome
+        self.sobrenome = sobrenome
+        self.data_nascimento = data_nascimento
+        self.documento = documento
+        self.email = email
+        self.senha = senha
+        self.qrcode = qrcode
+
 class Institution(object):
     def __init__(self,  nome: str, diretor: str, tipo: int, ensino: int, estado: int, municipio: str, cep: str, rua: str, numero: str, email: str, senha: str):
         self.nome = nome
