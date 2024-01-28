@@ -32,6 +32,10 @@ def security():
 def account():
     return render_template('new_account.html')
 
+@app.route("/account_resp")
+def account_resp():
+    return render_template('new_account_usr.html')
+
 @app.route("/homeSchool", methods=['GET', 'POST'])
 def homeSchool():
     
