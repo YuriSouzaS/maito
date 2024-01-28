@@ -5,14 +5,7 @@ from db import inserir_db, conecta_db
 from validation import *
 
 
-
 app = Flask(__name__)
-# app.config['MYSQL_HOST'] = 'localhost'
-# app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = '088011'
-# app.config['MYSQL_DB'] = 'DB_MAITO'
-
-# mysql = MYSQL(app)
 
 
 @app.route("/")
@@ -45,7 +38,7 @@ def homeSchool():
     
     escola = request.form['escola']
     diretor = request.form['diretor']
-    tipo = request.form['tipo']
+    classificacao = request.form['tipo']
     ensino = request.form['ensino']
     estado = request.form['estado']
     cidade = request.form['cidade']
@@ -57,10 +50,9 @@ def homeSchool():
 
     
     # instancia da class institution
-    inst = Institution.Institution(escola, diretor, tipo, ensino, estado, cidade, cep, rua, num, email, senha)
-    
+    inst = Institution.Institution(escola, diretor, classificacao, ensino, estado, cidade, cep, rua, num, email, senha)
     # Metodo que faz o envio ao banco
-    inserir_db(inst.nome, inst.diretor, inst.municipio, inst.cep, inst.rua, inst.numero, inst.email, inst.senha)
+    inserir_db(inst.nome, inst.diretor, inst.tipo, inst.ensino, inst.estado, inst.municipio, inst.cep, inst.rua, inst.numero, inst.email, inst.senha)
     
     return render_template('home_school.html', inst = inst )
 

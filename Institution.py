@@ -1,7 +1,7 @@
 from db import inserir_db, conecta_db
 
 class Institution(object):
-    def __init__(self,  nome: str, diretor: str, tipo: str, ensino: str, estado: str, municipio: str, cep: str, rua: str, numero: int, email: str, senha: str):
+    def __init__(self,  nome: str, diretor: str, tipo: int, ensino: int, estado: int, municipio: str, cep: str, rua: str, numero: str, email: str, senha: str):
         self.nome = nome
         self.diretor = diretor
         self.tipo = tipo
@@ -48,12 +48,11 @@ class Institution(object):
 
 
 if __name__ == "__main__":
-    i = Institution("Escola Arco iris", "Chagas", "publica", "medio", "SP", "Diadema", "12345090", "Sonia abrão", 273, "email@exemplo123.com", "123sdjs" )
-    # i.getInstitution()
-    # print(i.nome)
+    i = Institution("Escola Arco iris", "Chagas", 1, 3, 24, "Diadema", 12345090, "Sonia abrão", 273, "email@exemplo123.com", "123sdjs" )
+    print(i.setInstitution())
     # v = Validaction()
     # v.sizeString()
-    sql = f'''insert into public.institution 
-(nome,diretor,municipio,cep,rua,numero,email,senha) values ('{i.nome}','{i.diretor}','{i.municipio}','{i.cep}','{i.rua}','{i.numero}','{i.email}','{i.senha}')'''
-    inserir_db(sql)
+    #sql = f'''insert into public.institution 
+#(nome,diretor,municipio,cep,rua,numero,email,senha) values ('{i.nome}','{i.diretor}','{i.municipio}','{i.cep}','{i.rua}','{i.numero}','{i.email}','{i.senha}')'''
+    #inserir_db(sql)
     

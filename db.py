@@ -1,47 +1,49 @@
-import psycopg2
+import sqlite3
+
 
 # Função para criar conexão no banco
 def conecta_db():
-  con = psycopg2.connect(database="db_sie",
-                        host="localhost",
-                        user="postgres",
-                        password="088011",
-                        port="5433")
+  con = None
+  
+  try:
+    con = sqlite3.connect("SIE.db")
+  except Error as e:
+    print(e)
+  
   return con
 
 
 # Função para inserir dados no banco
-def inserir_db(nome, diretor, municipio, cep, rua, numero, email, senha):
-   
-    sql = f'''
-            insert into public.institution 
-            (nome,diretor,municipio,cep,rua,numero,email,senha)
-            values
-            ('{nome}','{diretor}','{municipio}','{cep}','{rua}','{numero}','{email}','{senha}')
-        '''
-   
-    con = conecta_db()
-    cur = con.cursor()
-    try:
-        cur.execute(sql)
-        con.commit()
-    except (Exception, psycopg2.DatabaseError) as error:
-        print("Error: %s" % error)
-        con.rollback()
-        cur.close()
-        return 1
-    cur.close()
-
-# Função para consulta na tebla instituição
-def select_all(sql):
+def inserir_db(instituicao, diretor, classif, ensino, estado, cidade, cep, rua, numero, email, senha):
+  sql = f'''
+          insert into INSTITUICAO 
+          (instituicao,diretor,fk_classificacao, fk_ensino, fk_estado, cidade,cep,logradouro,numero,email,senha)
+          values
+          ('{instituicao}','{diretor}',{classif},{ensino},{estado},'{cidade}','{cep}','{rua}','{numero}','{email}','{senha}')
+      '''
+  
   con = conecta_db()
   cur = con.cursor()
+
   cur.execute(sql)
-  recset = cur.fetchall()
+  con.commit()
+  print('Dados inseridos com sucesso.')
+  cur.close()
+
+# Função para consulta na tebla instituição
+def select_all(id):
+  con = conecta_db()
+  cur = con.cursor()
+
+  cur.execute(f"SELECT * FROM INSTITUICAO WHERE id={id}")
+  
+  rows = cur.fetchall()
   registros = []
-  for rec in recset:
-    registros.append(rec)
+  
+  for row in rows:
+    registros.append(row)
   con.close()
+  
   return registros
 
 
@@ -58,16 +60,18 @@ if __name__ == "__main__":
 
   # sql do insert instituição
   sql = '''insert into public.institution 
-  (nome,diretor,municipio,cep,rua,numero,email,senha) values ('School Obrian Oconnor','Carlos monte','São bernardo do campo','09951989','santa maira','900','obrian@exemplo.com','321123')'''
+  (instituicao,diretor, classif, ensino, estado, cidade,cep,rua,numero,email,senha) values ('School Obrian Oconnor','Carlos monte','São bernardo do campo','09951989','santa maira','900','obrian@exemplo.com','321123')'''
   
   # insert da instituição
-  # inserir_db(sql)
+  inserir_db('escola Genisis','Pedro do grau', 1, 2, 2, 'Diadema','09951090','maira e maraisa','980','cantamuito@exemplo.com','3jjshsh21123')
   
   # sql do select
-  sql1 = '''SELECT * FROM public.institution'''
+  id = 1
   
   # retorna uma lista[] com tuplas()
-  # a = select_all(sql1)
+  #a = select_all(id)
+  #print(a[0][2])
+
 
   sql2 = '''SELECT * FROM public.institution WHERE id_inst = %s'''%(1)
   # a = select_one(sql2)
