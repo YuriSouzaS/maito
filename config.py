@@ -2,8 +2,7 @@ from db import inserir_db, conecta_db
 
 class Responsavel(object):
     def __init__(self,  nome: str, sobrenome: str, data_nascimento: str, documento: int, email: str, senha: str, qrcode: str):
-        self.nome = nome
-        self.sobrenome = sobrenome
+        self.nome = f'{nome} {sobrenome}'
         self.data_nascimento = data_nascimento
         self.documento = documento
         self.email = email
@@ -58,11 +57,8 @@ class Institution(object):
 
 
 if __name__ == "__main__":
-    i = Institution("Escola Arco iris", "Chagas", 1, 3, 24, "Diadema", 12345090, "Sonia abrão", 273, "email@exemplo123.com", "123sdjs" )
-    print(i.setInstitution())
-    # v = Validaction()
-    # v.sizeString()
-    #sql = f'''insert into public.institution 
-#(nome,diretor,municipio,cep,rua,numero,email,senha) values ('{i.nome}','{i.diretor}','{i.municipio}','{i.cep}','{i.rua}','{i.numero}','{i.email}','{i.senha}')'''
-    #inserir_db(sql)
-    
+    #   i = Institution("Escola Arco iris", "Chagas", 1, 3, 24, "Diadema", 12345090, "Sonia abrão", 273, "email@exemplo123.com", "123sdjs" )
+    #   print(i.setInstitution())
+
+       usr = Responsavel("Alana", "marques", "12/03/1992", 18182823, "alana@gmail.com", "akjhojji383", "nahhuebe838784")
+       print(usr.nome, usr.email, usr.qrcode)

@@ -1,12 +1,10 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request
 import os
 import config 
-from db import inserir_db, conecta_db
+from db import inserir_db, inserir_usr
 from validation import *
 
-
 app = Flask(__name__)
-
 
 @app.route("/")
 def index():
@@ -36,6 +34,7 @@ def account():
 def account_resp():
     return render_template('new_account_usr.html')
 
+
 @app.route("/homeSchool", methods=['GET', 'POST'])
 def homeSchool():
     
@@ -59,29 +58,28 @@ def homeSchool():
     
     return render_template('home_school.html', inst = inst )
 
-
-@app.route("/homeResponsavel", methods=['GET', 'POST'])
-def homeResponsavel():
-    
-    nome = request.form['firstname']
-    sobrenome = request.form['lastname']
-    data_nascimento = request.form['data_nascimento']
-    documento = request.form['n_documento']
-    email = request.form['email']
-    senha = request.form['senha']
-    usr_qrcode = request.form['qrcode']
-    
-    # instancia da class Responsavel
-    resp = config.Responsavel(nome, sobrenome, data_nascimento, documento, email, senha, usr_qrcode )
-    # Metodo faz o envio ao banco
-    inserir_db(resp.nome, resp.sobrenome, resp.data_nascimento, resp.documento, resp.email, resp.senha, usr_qrcode)
-    
-    return render_template('home_responsavel.html', resp = resp )
-
 @app.route("/profileSchool")
 def profileSchool():
     return render_template('profileSchool.html')
 
+
+@app.route("/homeResponsavel", methods=['GET', 'POST'])
+def homeResponsavel():
+    nome = request.form['nome']
+    sobrenome = request.form['sobrenome']
+    nascimento = request.form['nascimento']
+    documento = request.form['documento']
+    email = request.form['usremail']
+    senha = request.form['usrsenha']
+    qrcode = request.form['qrcode']
+
+    # instancia da class Responsavel
+    resp = config.Responsavel(nome, sobrenome, nascimento, documento, email, senha, qrcode )
+
+    # Metodo faz o envio ao banco
+    inserir_usr(resp.nome, resp.data_nascimento, resp.documento, resp.email, resp.senha, resp.qrcode)
+    
+    return render_template('homeResponsavel.html', resp = resp)
 
 if(__name__ == "__main__"):
     app.run(debug=True)

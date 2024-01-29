@@ -1,6 +1,5 @@
 import sqlite3
 
-
 # Função para criar conexão no banco
 def conecta_db():
   con = None
@@ -20,6 +19,24 @@ def inserir_db(instituicao, diretor, classif, ensino, estado, cidade, cep, rua, 
           (instituicao,diretor,fk_classificacao, fk_ensino, fk_estado, cidade,cep,logradouro,numero,email,senha)
           values
           ('{instituicao}','{diretor}',{classif},{ensino},{estado},'{cidade}','{cep}','{rua}','{numero}','{email}','{senha}')
+      '''
+  
+  con = conecta_db()
+  cur = con.cursor()
+
+  cur.execute(sql)
+  con.commit()
+  print('Dados inseridos com sucesso.')
+  cur.close()
+
+
+  # Função para inserir dados no banco
+def inserir_usr(nome, data_nascimento, documento, email, senha, usr_qrcode):
+  sql = f'''
+          insert into responsavel 
+          (nome,data_nascimento,numero_documento, email,senha,numero_qrcode)
+          values
+          ('{nome}','{data_nascimento}',{documento},'{email}','{senha}','{usr_qrcode}')
       '''
   
   con = conecta_db()
@@ -58,21 +75,10 @@ def select_one(sql):
 
 if __name__ == "__main__":
 
-  # sql do insert instituição
-  sql = '''insert into public.institution 
-  (instituicao,diretor, classif, ensino, estado, cidade,cep,rua,numero,email,senha) values ('School Obrian Oconnor','Carlos monte','São bernardo do campo','09951989','santa maira','900','obrian@exemplo.com','321123')'''
-  
   # insert da instituição
-  inserir_db('escola Genisis','Pedro do grau', 1, 2, 2, 'Diadema','09951090','maira e maraisa','980','cantamuito@exemplo.com','3jjshsh21123')
-  
-  # sql do select
-  id = 1
-  
-  # retorna uma lista[] com tuplas()
-  #a = select_all(id)
-  #print(a[0][2])
+  #inserir_db('escola gael','Pedro marques', 2, 2, 2, 'Diadema','09951090','maira e maraisa','980','gael@exemplo.com','3jjshsh21123')
 
-
-  sql2 = '''SELECT * FROM public.institution WHERE id_inst = %s'''%(1)
-  # a = select_one(sql2)
+  inserir_usr('kali torres','17/02/1989', 129951090 ,'kalitorres@gmail.com','mahdnd980','majkdkuheo383n3')
+  
+  #print(select_all(2))
   
