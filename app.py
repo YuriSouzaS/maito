@@ -58,6 +58,8 @@ def homeSchool():
     
     return render_template('home_school.html', inst = inst )
 
+
+
 @app.route("/profileSchool")
 def profileSchool():
     return render_template('profileSchool.html')
@@ -80,6 +82,12 @@ def homeResponsavel():
     inserir_usr(resp.nome, resp.data_nascimento, resp.documento, resp.email, resp.senha, resp.qrcode)
     
     return render_template('homeResponsavel.html', resp = resp)
+
+
+@app.get("/homeResponsavel/temporarios")
+def homeResponsavelTemp():
+    return render_template("ResponsavelTemp.html")
+
 
 if(__name__ == "__main__"):
     app.run(debug=True)
