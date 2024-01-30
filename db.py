@@ -76,9 +76,8 @@ def select_one(sql):
 if __name__ == "__main__":
 
   # insert da instituição
-  #inserir_db('escola gael','Pedro marques', 2, 2, 2, 'Diadema','09951090','maira e maraisa','980','gael@exemplo.com','3jjshsh21123')
+  #inserir_db('escola gael','Pedro marques', 2, 2, 2, 'Diadema','09951090','maira e maraisa','980','gael@exemplo.com','3jjshsh211
 
-  inserir_usr('kali torres','17/02/1989', 129951090 ,'kalitorres@gmail.com','mahdnd980','majkdkuheo383n3')
-  
+  inserir_usr('kali torres','17/02/1989', 129951090 ,'kalitorres@gmail.com','mahdnd980','majkdkuheo383n3' )
   #print(select_all(2))
   
