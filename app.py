@@ -71,10 +71,9 @@ def account_resp():
         documento = request.form['documento']
         email = request.form['usremail']
         senha = request.form['usrsenha']
-        qrcode = request.form['qrcode']
     
         # instancia da class Responsavel
-        resp = config.Responsavel(nome, sobrenome, nascimento, documento, email, senha, qrcode )
+        resp = config.Responsavel(nome, sobrenome, nascimento, documento, email, senha)
 
         # iniciada a session
         session['nome'] = resp.nome
