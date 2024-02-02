@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, url_for, redirect
 import os
 import config
 from geradorKey import sessionKey
+from db import select_user
 
 app = Flask(__name__)
 
@@ -17,8 +18,15 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route("/login/user")
+@app.route("/login/user", methods=['GET', 'POST'])
 def user():
+    if request.method == 'POST':
+        print(request.form['email'])
+        user = select_user("responsavel", request.form['email'])
+
+        if user[5] == request.form['senha']:
+             session['nome'] = user[1]
+             return redirect(url_for('homeResponsavel') )
     return render_template('login_usr.html')
     
 @app.route("/login/school")
