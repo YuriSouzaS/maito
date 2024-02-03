@@ -23,10 +23,8 @@ def inserir_db(instituicao, diretor, classif, ensino, estado, cidade, cep, rua, 
   
   con = conecta_db()
   cur = con.cursor()
-
   cur.execute(sql)
   con.commit()
-  print('Dados inseridos com sucesso.')
   cur.close()
 
 
@@ -41,19 +39,15 @@ def inserir_usr(nome, data_nascimento, documento, email, senha, usr_qrcode):
   
   con = conecta_db()
   cur = con.cursor()
-
   cur.execute(sql)
   con.commit()
-  print('Dados inseridos com sucesso.')
   cur.close()
 
 # Função para consulta na tebla instituição
 def select_all(tabela, id):
   con = conecta_db()
   cur = con.cursor()
-
   cur.execute(f"SELECT * FROM {tabela} WHERE id={id}")
-  
   rows = cur.fetchall()
   registros = []
   
@@ -71,15 +65,4 @@ def select_user(tabela, email):
   cur.execute(f"SELECT * FROM {tabela} WHERE email='{email}'")
   recset = cur.fetchone()
   con.close()
-  print("select")
   return recset
-
-if __name__ == "__main__":
-
-  # insert da instituição
-  #inserir_db('escola gael','Pedro marques', 2, 2, 2, 'Diadema','09951090','maira e maraisa','980','gael@exemplo.com','3jjshsh211
-
-  # inserir_usr('kali torres','17/02/1989', 129951090 ,'kalitorres@gmail.com','mahdnd980','majkdkuheo383n3' )
-  #print(select_all(2))
-  a = select_user("responsavel", "antony@gmail.com")
-  print(a[5])
