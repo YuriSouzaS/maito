@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session, url_for, redirect
 import os
 import config
 from geradorKey import sessionKey
-from db import select_user
+from db import select_user, buscar_alunos_resp
 
 app = Flask(__name__)
 
@@ -25,8 +25,10 @@ def user():
         user = select_user("responsavel", request.form['email'])
 
         if user[5] == request.form['senha']:
-             session['nome'] = user[1]
-             return redirect(url_for('homeResponsavel') )
+            # iniciada a session
+            session['email'] = user[4]
+            
+            return redirect(url_for('homeResponsavel') )
     return render_template('login_usr.html')
     
 @app.route("/login/school")
@@ -84,7 +86,8 @@ def account_resp():
         resp = config.Responsavel(nome, sobrenome, nascimento, documento, email, senha)
 
         # iniciada a session
-        session['nome'] = resp.nome
+        # session['nome'] = resp.nome
+        session['email'] = resp.email
         
         # redireciona para home do usuario
         return redirect(url_for('homeResponsavel'))
@@ -95,7 +98,7 @@ def account_resp():
 
 @app.route("/homeSchool", methods=['GET', 'POST'])
 def homeSchool():
-    if 'nome' in session:
+    if 'email' in session:
         return render_template('home_school.html')
     return f"You are not logged in"
 
@@ -107,8 +110,11 @@ def profileSchool():
 
 @app.route("/homeResponsavel", methods=['GET', 'POST'])
 def homeResponsavel():
-    if 'nome' in session:
-        return render_template('homeResponsavel.html')
+    tab_resp = "responsavel"
+    if 'email' in session:
+        usr = select_user(tab_resp, session['email'] )
+        data_aluno = buscar_alunos_resp(tab_resp, session['email'] )
+        return render_template('homeResponsavel.html', usr=usr, data_aluno=data_aluno)
     return f"You are not logged in"
 
 

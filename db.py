@@ -66,3 +66,32 @@ def select_user(tabela, email):
   recset = cur.fetchone()
   con.close()
   return recset
+
+def buscar_alunos_resp(tabela, email):
+  resp = select_user(tabela, email)
+  id_usr = resp[0]
+  
+  con = conecta_db()
+  cur = con.cursor()
+  
+  responsavel_aluno = "responsavel_aluno"
+  cur.execute(f"SELECT * FROM {responsavel_aluno} WHERE resp_principal={id_usr}")
+  recset = cur.fetchone()
+  
+  id_aluno = recset[2]
+  
+  tab_aluno = "ALUNO"
+  cur.execute(f"SELECT * FROM {tab_aluno} WHERE id={id_aluno}")
+  data_aluno = cur.fetchone()
+  
+  con.close()
+
+  return data_aluno
+
+
+  
+
+if(__name__ == "__main__"):
+  buscar_alunos_resp("responsavel", "marcelorossi@gmail.com")
+  
+
