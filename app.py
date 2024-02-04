@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, url_for, redirect
+from flask import Flask, render_template, request, session, url_for, redirect, flash
 import os
 import config
 from geradorKey import sessionKey
@@ -23,12 +23,14 @@ def user():
     if request.method == 'POST':
         print(request.form['email'])
         user = select_user("responsavel", request.form['email'])
-
-        if user[5] == request.form['senha']:
-            # iniciada a session
-            session['email'] = user[4]
-            
-            return redirect(url_for('homeResponsavel') )
+        try:
+            if user[5] == request.form['senha']:
+                # iniciada a session
+                session['email'] = user[4]
+                return redirect(url_for('homeResponsavel') )
+        except:
+            flash('Email ou senha estão errados.')
+            return redirect(url_for('user'))
     return render_template('login_usr.html')
     
 @app.route("/login/school")

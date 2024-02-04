@@ -84,6 +84,7 @@ def buscar_alunos_resp(tabela, email):
   
   tab_aluno = "ALUNO"
   cur.execute(f"SELECT * FROM {tab_aluno} WHERE id={id_aluno}")
+
   data_aluno = cur.fetchone()
   con.close()
 
