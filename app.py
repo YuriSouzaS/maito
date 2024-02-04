@@ -114,6 +114,8 @@ def homeResponsavel():
     if 'email' in session:
         usr = select_user(tab_resp, session['email'] )
         data_aluno = buscar_alunos_resp(tab_resp, session['email'] )
+        if data_aluno == False:
+            data_aluno == "Sem registros"
         return render_template('homeResponsavel.html', usr=usr, data_aluno=data_aluno)
     return f"You are not logged in"
 

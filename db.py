@@ -77,13 +77,14 @@ def buscar_alunos_resp(tabela, email):
   responsavel_aluno = "responsavel_aluno"
   cur.execute(f"SELECT * FROM {responsavel_aluno} WHERE resp_principal={id_usr}")
   recset = cur.fetchone()
-  
-  id_aluno = recset[2]
+  try:
+    id_aluno = recset[2]
+  except:
+    return False
   
   tab_aluno = "ALUNO"
   cur.execute(f"SELECT * FROM {tab_aluno} WHERE id={id_aluno}")
   data_aluno = cur.fetchone()
-  
   con.close()
 
   return data_aluno
@@ -92,6 +93,6 @@ def buscar_alunos_resp(tabela, email):
   
 
 if(__name__ == "__main__"):
-  buscar_alunos_resp("responsavel", "marcelorossi@gmail.com")
-  
+  #buscar_alunos_resp("responsavel", "marcelorossi@gmail.com")
+  inserir_usr("asd asd", "12-12-1997", "12312123", "asdasd@grmal.com", "nainini", "aosa9ja9s9a")  
 
