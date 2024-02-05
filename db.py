@@ -28,7 +28,7 @@ def inserir_db(instituicao, diretor, classif, ensino, estado, cidade, cep, rua, 
   cur.close()
 
 
-  # Função para inserir dados no banco
+# Função para inserir dados no banco
 def inserir_usr(nome, data_nascimento, documento, email, senha, usr_qrcode):
   sql = f'''
           insert into responsavel 
@@ -58,7 +58,6 @@ def select_all(tabela, id):
   return registros
 
 
-# 
 def select_user(tabela, email):
   con = conecta_db()
   cur = con.cursor()
@@ -77,6 +76,7 @@ def buscar_alunos_resp(tabela, email):
   responsavel_aluno = "responsavel_aluno"
   cur.execute(f"SELECT * FROM {responsavel_aluno} WHERE resp_principal={id_usr}")
   recset = cur.fetchone()
+  
   try:
     id_aluno = recset[2]
   except:
@@ -91,9 +91,40 @@ def buscar_alunos_resp(tabela, email):
   return data_aluno
 
 
+def contarRegistros(tabela, campo,  id):
+  con = conecta_db()
+  cur = con.cursor()
+  cur.execute(f"SELECT COUNT({campo}) FROM {tabela} where resp_principal={id}")
+  count = cur.fetchone() 
+  con.close()
+  return count
   
+def buscar_temporario(tabela, id):
+  
+  con = conecta_db()
+  cur = con.cursor()
+  
+  responsavel_aluno = "responsavel_aluno"
+  cur.execute(f"SELECT resp_temp FROM {tabela} WHERE resp_principal={id}")
+  recset = cur.fetchone()
+  
+  # try:
+  #   id_aluno = recset[2]
+  # except:
+  #   return False
+  
+  tab_temp = "responsavel_temporario"
+  cur.execute(f"SELECT * FROM {tab_temp} WHERE id={recset[0]}")
+
+  data_temp = cur.fetchone()
+  con.close()
+
+  return data_temp
 
 if(__name__ == "__main__"):
   #buscar_alunos_resp("responsavel", "marcelorossi@gmail.com")
-  inserir_usr("asd asd", "12-12-1997", "12312123", "asdasd@grmal.com", "nainini", "aosa9ja9s9a")  
-
+  #inserir_usr("asd asd", "12-12-1997", "12312123", "asdasd@grmal.com", "nainini", "aosa9ja9s9a")  
+  tabela = "responsavel_aluno"
+  id = "1"
+  campo = "resp_temp"
+  print(buscar_temporario("responsavel_aluno", "1"))

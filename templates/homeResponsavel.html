@@ -70,34 +70,32 @@
         </div>
     </div>
   </main>
-  <div class="col-md-3 g-3">
-    <div class="row ">
-      <h4>Aluno(a):</h4>
-      <div class="card" style="width: 18rem;">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Nome: <strong>{{data_aluno[1]}}</strong></li>
-          <li class="list-group-item">Turma: <strong>{{data_aluno[3]}}</strong></li>
-          <li class="list-group-item">QR code: <strong>{{data_aluno[4]}}</strong></li>
-          <li class="list-group-item">Status: <strong>{{ False }}</strong></li>
-        </ul>
+    <div class="col-md-3 g-3">
+      <div class="row ">
+        <h4>Aluno(a):</h4>
+        <div class="card" style="width: 18rem;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Nome: <strong>{{data_aluno[1]}}</strong></li>
+            <li class="list-group-item">RA: <strong>{{data_aluno[2]}}</strong></li>
+            <li class="list-group-item">QR code: <strong><button>Gerar</button></strong></li>
+            <li class="list-group-item">Status: <strong>{{ False }}</strong></li>
+          </ul>
+        </div>
       </div>
+      <hr>
+        <div class="row">
+          <h4>Responsável:</h4>
+          <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Nome: <strong>{{ usr[1] }}</strong></li>
+              <!-- <li class="list-group-item">Responsavel por:</li> -->
+              <li class="list-group-item">Responsaveis temporarios:  {{data_temp[0] }}</li>
+              <li class="list-group-item">QR code: <button>Gerar</button></li>
+            </ul>
+          </div>
+        </div>
     </div>
-    <hr>
-    <div class="row">
-
-      <h4>Responsável:</h4>
-      <div class="card" style="width: 18rem;">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Nome: <strong>{{ usr[1] }}</strong></li>
-          <li class="list-group-item">Responsavel por:</li>
-          <li class="list-group-item">N° Responsaveis temporarios:</li>
-          <li class="list-group-item">QR code: <strong>{{ usr[6] }}</strong></li>
-        </ul>
-      </div>
-     
-      </div>
-    </div>
-  </div>
 </div>
+
 
 {% endblock  %}

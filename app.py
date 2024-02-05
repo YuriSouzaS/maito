@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session, url_for, redirect, f
 import os
 import config
 from geradorKey import sessionKey
-from db import select_user, buscar_alunos_resp
+from db import select_user, buscar_alunos_resp, contarRegistros, buscar_temporario
 
 app = Flask(__name__)
 
@@ -112,13 +112,13 @@ def profileSchool():
 
 @app.route("/homeResponsavel", methods=['GET', 'POST'])
 def homeResponsavel():
-    tab_resp = "responsavel"
     if 'email' in session:
-        usr = select_user(tab_resp, session['email'] )
-        data_aluno = buscar_alunos_resp(tab_resp, session['email'] )
+        data_resp = select_user("responsavel", session['email'] )
+        data_aluno = buscar_alunos_resp("responsavel", session['email'] )
+        data_temp = contarRegistros("responsavel_aluno", "resp_temp", data_resp[0])
         if data_aluno == False:
             data_aluno == "Sem registros"
-        return render_template('homeResponsavel.html', usr=usr, data_aluno=data_aluno)
+        return render_template('homeResponsavel.html', usr=data_resp, data_aluno=data_aluno, data_temp=data_temp)
     return f"You are not logged in"
 
 
@@ -131,7 +131,10 @@ def logout():
 
 @app.get("/homeResponsavel/temporarios")
 def homeResponsavelTemp():
-    return render_template("ResponsavelTemp.html")
+    if 'email' in session:
+        data_resp = select_user("responsavel", session['email'])
+        data_temp = buscar_temporario("responsavel_aluno", data_resp[0])
+    return render_template("ResponsavelTemp.html", data_resp=data_resp, data_temp = data_temp)
 
 
 if(__name__ == "__main__"):
