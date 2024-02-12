@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, url_for, redirect, flash
 import os
-import config
+import config 
 from geradorKey import sessionKey
 from db import select_user, buscar_alunos_resp, contarRegistros, buscar_temporario
 
@@ -134,7 +134,8 @@ def homeResponsavelTemp():
     if 'email' in session:
         data_resp = select_user("responsavel", session['email'])
         data_temp = buscar_temporario("responsavel_aluno", data_resp[0])
-    return render_template("ResponsavelTemp.html", data_resp=data_resp, data_temp = data_temp)
+        data = config.Temporario.formatarDados(data_temp)
+    return render_template("ResponsavelTemp.html", data_resp=data_resp, data_temp = data)
 
 
 if(__name__ == "__main__"):

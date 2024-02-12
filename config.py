@@ -1,4 +1,4 @@
-from db import inserir_db, inserir_usr
+from db import inserir_db, inserir_usr, buscar_temporario
 from geradorKey import sessionKey
 
 class Responsavel(object):
@@ -33,3 +33,15 @@ class Institution(object):
     def saveDb(self):
         inserir_db(self.nome, self.diretor, self.tipo, self.ensino, self.estado, self.municipio, self.cep, self.rua, self.numero, self.email, self.senha)
         
+
+class Temporario:
+    def formatarDados(data):
+        a = []
+        for i in data:
+            a.append(i[0])
+        return a
+
+if(__name__ == "__main__"):
+    
+    Temporario.formatarDados()
+    

@@ -1,5 +1,5 @@
 import sqlite3
-
+import config
 # Função para criar conexão no banco
 def conecta_db():
   con = None
@@ -100,31 +100,28 @@ def contarRegistros(tabela, campo,  id):
   return count
   
 def buscar_temporario(tabela, id):
-  
   con = conecta_db()
   cur = con.cursor()
   
-  responsavel_aluno = "responsavel_aluno"
+  # retorna o id dos temporarios
   cur.execute(f"SELECT resp_temp FROM {tabela} WHERE resp_principal={id}")
-  recset = cur.fetchone()
+  recset = cur.fetchall()
   
-  # try:
-  #   id_aluno = recset[2]
-  # except:
-  #   return False
-  
+  data_temp = []
   tab_temp = "responsavel_temporario"
-  cur.execute(f"SELECT * FROM {tab_temp} WHERE id={recset[0]}")
 
-  data_temp = cur.fetchone()
+  # condição caso haja mais de um temporario
+  if len(recset) > 0:
+    for i in range(len(recset)):
+      cur.execute(f"SELECT * FROM {tab_temp} WHERE id={recset[i][0]}")
+      x = cur.fetchall()
+      data_temp.append(x)
+  else:
+    cur.execute(f"SELECT * FROM {tab_temp} WHERE id={recset[0][0]}")
   con.close()
-
   return data_temp
 
 if(__name__ == "__main__"):
-  #buscar_alunos_resp("responsavel", "marcelorossi@gmail.com")
-  #inserir_usr("asd asd", "12-12-1997", "12312123", "asdasd@grmal.com", "nainini", "aosa9ja9s9a")  
-  tabela = "responsavel_aluno"
-  id = "1"
-  campo = "resp_temp"
-  print(buscar_temporario("responsavel_aluno", "1"))
+  x = buscar_temporario("responsavel_aluno", "29")
+  print(config.Temporario.formatarDados(x))
+  
