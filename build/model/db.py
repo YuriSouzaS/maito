@@ -1,5 +1,7 @@
 import sqlite3
-import config
+from sqlite3 import Error
+import build.config as config
+
 # Função para criar conexão no banco
 def conecta_db():
   con = None

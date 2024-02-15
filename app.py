@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, session, url_for, redirect, flash
 import os
-import config 
-from geradorKey import sessionKey
-from db import select_user, buscar_alunos_resp, contarRegistros, buscar_temporario
+import build.config as config 
+from build.geradorKey import sessionKey
+from build.model.db import select_user, buscar_alunos_resp, contarRegistros, buscar_temporario
 
 app = Flask(__name__)
 
@@ -31,15 +31,15 @@ def user():
         except:
             flash('Email ou senha estão errados.')
             return redirect(url_for('user'))
-    return render_template('login_usr.html')
+    return render_template('user/login_usr.html')
     
 @app.route("/login/school")
 def school():
-    return render_template('login_school.html')
+    return render_template('school/login_school.html')
 
 @app.route("/login/security")
 def security():
-    return render_template('login_security.html')
+    return render_template('setor/login_security.html')
 
 @app.route("/account", methods=['GET', 'POST'])
 def account():
@@ -68,7 +68,7 @@ def account():
         return redirect(url_for('homeSchool') )
     
     # se não for post, mostre esta pagina
-    return render_template('new_account.html')
+    return render_template('school/new_account.html')
 
 @app.route("/account_resp", methods=['GET', 'POST'])
 def account_resp():
@@ -95,19 +95,19 @@ def account_resp():
         return redirect(url_for('homeResponsavel'))
     
     # se não for post, mostre esta pagina
-    return render_template('new_account_usr.html')
+    return render_template('user/new_account_usr.html')
 
 
 @app.route("/homeSchool", methods=['GET', 'POST'])
 def homeSchool():
     if 'email' in session:
-        return render_template('home_school.html')
+        return render_template('school/home_school.html')
     return f"You are not logged in"
 
 
 @app.route("/profileSchool")
 def profileSchool():
-    return render_template('profileSchool.html')
+    return render_template('school/profileSchool.html')
 
 
 @app.route("/homeResponsavel", methods=['GET', 'POST'])
@@ -118,7 +118,7 @@ def homeResponsavel():
         data_temp = contarRegistros("responsavel_aluno", "resp_temp", data_resp[0])
         if data_aluno == False:
             data_aluno == "Sem registros"
-        return render_template('homeResponsavel.html', usr=data_resp, data_aluno=data_aluno, data_temp=data_temp)
+        return render_template('user/homeResponsavel.html', usr=data_resp, data_aluno=data_aluno, data_temp=data_temp)
     return f"You are not logged in"
 
 
@@ -135,7 +135,7 @@ def homeResponsavelTemp():
         data_resp = select_user("responsavel", session['email'])
         data_temp = buscar_temporario("responsavel_aluno", data_resp[0])
         data = config.Temporario.formatarDados(data_temp)
-    return render_template("ResponsavelTemp.html", data_resp=data_resp, data_temp = data)
+    return render_template("user/temporario/ResponsavelTemp.html", data_resp=data_resp, data_temp = data)
 
 
 if(__name__ == "__main__"):

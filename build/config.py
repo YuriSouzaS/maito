@@ -1,5 +1,5 @@
-from db import inserir_db, inserir_usr, buscar_temporario
-from geradorKey import sessionKey
+from build.model.db import inserir_db, inserir_usr, buscar_temporario
+from build.geradorKey import sessionKey
 
 class Responsavel(object):
     def __init__(self,  nome: str, sobrenome: str, nascimento: str, documento: int, email: str, senha: str):
