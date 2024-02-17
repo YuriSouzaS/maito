@@ -2,3 +2,10 @@ __pycache__/*
 SIE.db
 select_test.sql
 SIE.db-journal
+build/__pycache__/*
+build/__pycache__/config.cpython-310.pyc
+build/model/__pycache__/*
+build/api/__pycache__/*
+build/validation/__pycache__/*
+.vs/*
+.venv/*

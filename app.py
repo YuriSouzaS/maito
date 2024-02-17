@@ -86,7 +86,7 @@ def account_resp():
     
         # instancia da class Responsavel
         resp = config.Responsavel(nome, sobrenome, nascimento, documento, email, senha)
-
+        
         # iniciada a session
         # session['nome'] = resp.nome
         session['email'] = resp.email
