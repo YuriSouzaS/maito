@@ -87,12 +87,16 @@ def account_resp():
         # instancia da class Responsavel
         resp = config.Responsavel(nome, sobrenome, nascimento, documento, email, senha)
         
-        # iniciada a session
-        # session['nome'] = resp.nome
-        session['email'] = resp.email
+      
         
-        # redireciona para home do usuario
-        return redirect(url_for('homeResponsavel'))
+        if resp.checkResponsavel():
+            # iniciada a session
+            session['email'] = resp.email
+            
+            # redireciona para home do usuario
+            return redirect(url_for('homeResponsavel'))
+        else:
+            flash("Nome não deve conter números, e deve ser maior que 3 menor 200 ")
     
     # se não for post, mostre esta pagina
     return render_template('user/new_account_usr.html')
@@ -116,8 +120,6 @@ def homeResponsavel():
         data_resp = select_user("responsavel", session['email'] )
         data_aluno = buscar_alunos_resp("responsavel", session['email'] )
         data_temp = contarRegistros("responsavel_aluno", "resp_temp", data_resp[0])
-        if data_aluno == False:
-            data_aluno == "Sem registros"
         return render_template('user/homeResponsavel.html', usr=data_resp, data_aluno=data_aluno, data_temp=data_temp)
     return f"You are not logged in"
 

@@ -4,7 +4,16 @@
 <main class="container">
     <div class="form-signin w-100 m-auto" >
         <form  method="POST">
-            
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                    {% for message in messages %}
+                        <p class="flashes alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{ message }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </p>
+                    {% endfor %}
+            {% endif %}
+        {% endwith %}
             <img class="mb-4" src="{{ url_for('static', filename='img/logo.png') }}" width="72" heigth="57">
             
             <h1 class="h3 mb-3 fw-normal">

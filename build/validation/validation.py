@@ -30,13 +30,12 @@ class ValidationInstitution(object):
         for x in verifique:
             for padrao in padroes:
                 if re.search(padrao, x):
-                    # print(f"Has a number: {x}")
+                    # Has a number
                     v.append(True)
                 else:
-                    # print('No occurrence.')
+                    # No occurrence.
                     v.append(False)
         
-        # print(v)
         if v[0] or v[1]:
             return "Erro: Não deve conter numeros em Diretor ou Cidade."
         else:
@@ -45,7 +44,6 @@ class ValidationInstitution(object):
     
     def checkSizeCep(self):
         if len(self.data[6]) <= 8:
-            # print(f"{self.data[6]}, size: {len(self.data[6])}")
             return True
         else:
             return "Erro: Digite o CEP com 8 Números, sem ponto ou traços."
@@ -53,7 +51,6 @@ class ValidationInstitution(object):
     
     def checkSizeNumber(self):
         if len(self.data[8]) >= 1 and len(self.data[8]) <= 6:
-            # print(f"{self.data[8]}, size: {len(self.data[8])}")
             return True
         else:
             return "Erro: Máximo são 6 digitos."
@@ -64,7 +61,6 @@ class ValidationInstitution(object):
        
         for i in typeSchool:
             if i == self.data[2]:
-                # print(f"tipo: {i}")
                 return True
             
             
@@ -74,7 +70,6 @@ class ValidationInstitution(object):
        
         for i in typeSchool:
             if i == self.data[3]:
-                # print(f"tipo: {i}")
                 return True
             
 
@@ -86,7 +81,6 @@ class ValidationInstitution(object):
         
         for i in uf:
             if i  == self.data[4]:
-                # print(f"pass: {self.data[4]}")
                 return True
 
 
@@ -98,13 +92,10 @@ class ValidationInstitution(object):
         for x in verifique:
             for padrao in padroes:
                 if re.search(padrao, x):
-                    # print(f"Has a number: {x}")
                     v.append(True)
                 else:
-                    # print('No occurrence.')
                     v.append(False)
         
-        # print(v)
         if v[0] or v[1]:
             return "Erro: Não deve conter numeros em Diretor ou Cidade."
         else:
@@ -122,17 +113,17 @@ class ValidationResponsavel(object):
     def checkNameValid(self):
         pattern = r'[0-9]'
         if re.search(pattern, self.nome):
-            return True # Has a number
+            return False # Has a number, no valid
         else:
-            return False # No occurrence
+            return True # No occurrence, valid
 
 
     # Verificação: Tamanho mínimo e máximo da string(nome)
     def checkSizeName(self):
         if(len(self.nome) >= 3 and len(self.nome) <= 200):
-            return True
+            return True # pass
         else: 
-            return False
+            return False # failed
 
     # Verificação: Se tem caracteres 
     def checkHasString(self):

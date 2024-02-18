@@ -10,11 +10,23 @@ class Responsavel(object):
         self.email = email
         self.senha = senha
         self.qrcode = sessionKey()
-        self.saveDb()
-
-
+        
     def saveDb(self):
         inserir_usr(self.nome, self.nascimento, self.documento, self.email, self.senha, self.qrcode)
+
+    def checkResponsavel(self):
+        responsavel = ValidationResponsavel(self.nome, self.nascimento, self.documento, self.email, self.senha)
+        
+        if responsavel.checkNameValid():
+            if responsavel.checkSizeName():
+                self.saveDb()
+                return True
+            else:
+                return  False
+        else:
+           return False
+
+
 
 class Institution(object):
     def __init__(self,  nome: str, diretor: str, tipo: int, ensino: int, estado: int, municipio: str, cep: str, rua: str, numero: str, email: str, senha: str):
@@ -33,7 +45,6 @@ class Institution(object):
 
     def saveDb(self):
         inserir_db(self.nome, self.diretor, self.tipo, self.ensino, self.estado, self.municipio, self.cep, self.rua, self.numero, self.email, self.senha)
-        
 
 class Temporario:
     def formatarDados(data):
@@ -44,5 +55,5 @@ class Temporario:
 
 if(__name__ == "__main__"):
     
-    Temporario.formatarDados()
+    print(Responsavel.checkResponsavel())
     
