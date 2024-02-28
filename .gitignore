@@ -9,3 +9,4 @@ build/api/__pycache__/*
 build/validation/__pycache__/*
 .vs/*
 .venv/*
+build/__pycache__/config.cpython-310.pyc

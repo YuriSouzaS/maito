@@ -1,5 +1,17 @@
 {% extends 'components/base.html' %}
 
+{% block resource %}
+<style>
+    input:invalid {
+        border: 2px dashed red;
+      }
+      
+      input:valid {
+        border: 2px solid black;
+      }
+</style>
+{% endblock %}
+
 {% block body %}
 <main class="container">
     <div class="form-signin w-100 m-auto" >
@@ -21,10 +33,10 @@
             </h1>
             <div class="row g-3">
                 <div class="col-md-6">
-                    <input name="nome" type="text" class="form-control"  placeholder="Nome">
+                    <input name="nome" type="text" class="form-control"  placeholder="Nome" required>
                 </div>
                 <div class="col-md-6">
-                    <input name="sobrenome" type="text" class="form-control"placeholder="Sobrenome">
+                    <input name="sobrenome" type="text" class="form-control"placeholder="Sobrenome" required>
                 </div>
             </div>
             
@@ -36,16 +48,28 @@
             <br>
             <div class="row g-3">
                 <div class="col-md-6">
-                    <input name="nascimento" type="date" class="form-control" placeholder="Data nascimento">
+                    <input 
+                    name="nascimento" 
+                    type="date" 
+                    class="form-control" 
+                    placeholder="Data nascimento"
+                    required>
                 </div>
                 <div class="col-md-6">
-                    <input name="documento" type="text" class="form-control"  placeholder="N° RG">
+                    <input
+                    name="documento"
+                    type="number" 
+                    class="form-control"  
+                    placeholder="N° RG"
+                    required
+                    minlength="8"
+                    maxlength="8">
                 </div>
                 <div class="col-md-6">
-                    <input name="usremail" type="text" class="form-control"  placeholder="Email">
+                    <input name="usremail" type="email" class="form-control"  placeholder="Email" required>
                 </div>
                 <div class="col-md-6">
-                    <input name="usrsenha" type="password" class="form-control" placeholder=".....">
+                    <input name="usrsenha" type="password" class="form-control" placeholder="" required>
                 </div>
             </div>
             <hr>

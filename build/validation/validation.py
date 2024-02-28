@@ -125,7 +125,7 @@ class ValidationResponsavel(object):
         else: 
             return False # failed
 
-    # Verificação: Se tem caracteres 
+    # Verificação: Se tem caracteres no documento 
     def checkHasString(self):
         pattern = r'[a-zA-Z]'
         if re.search(pattern, str(self.documento)):
