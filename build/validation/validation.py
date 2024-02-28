@@ -149,5 +149,5 @@ class ValidationResponsavel(object):
             return False
        
 if __name__ == "__main__":
-    i = ValidationResponsavel("Paulo ricardo", "12-12-2000", 121112312, "paulo@email.com", "senha123")
-    print(i.checkHasString(), i.checkHasString() )
+    i = ValidationResponsavel("Paulo ricardo", "12-12-2000", 121112312, "paulo@1222.122", "senha123")
+    print(i.validateEmail())

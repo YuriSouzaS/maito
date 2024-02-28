@@ -19,10 +19,16 @@ class Responsavel(object):
         
         if responsavel.checkNameValid():
             if responsavel.checkSizeName():
-                self.saveDb()
-                return True
+                if responsavel.checkDocument():
+                    if responsavel.validateEmail():
+                        self.saveDb()
+                        return True
+                    else:
+                        return False
+                else:
+                    return  False
             else:
-                return  False
+                return False
         else:
            return False
 
