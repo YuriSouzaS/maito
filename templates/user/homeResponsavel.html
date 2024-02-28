@@ -1,8 +1,10 @@
 {% extends 'components/navbar.html' %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
-<div class="row">
-  <main class="d-flex flex-nowrap col-md-3">
+<div class="row barraMenu">
+  <!-- Menu lateral esquerdo -->
+  <main class="d-flex flex-nowrap col-md-3 col">
     <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
@@ -70,7 +72,9 @@
         </div>
     </div>
   </main>
-    <div class="col-md-3 g-3">
+
+  <!-- tasks lateral direito  -->
+  <div class="col" style="margin: 5%;">
       <div class="row ">
         <h4>Aluno(a):</h4>
         <div class="card" style="width: 18rem;">
@@ -94,8 +98,6 @@
             </ul>
           </div>
         </div>
-    </div>
+  </div>
 </div>
-
-
 {% endblock  %}
