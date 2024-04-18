@@ -124,13 +124,6 @@ def homeResponsavel():
     return f"You are not logged in"
 
 
-@app.route('/logout')
-def logout():
-    # remove a sessão
-    session.pop('nome', None)
-    return redirect(url_for('index'))
-
-
 @app.get("/homeResponsavel/temporarios")
 def homeResponsavelTemp():
     if 'email' in session:
@@ -139,6 +132,12 @@ def homeResponsavelTemp():
         data = config.Temporario.formatarDados(data_temp)
     return render_template("user/temporario/ResponsavelTemp.html", data_resp=data_resp, data_temp = data)
 
+
+@app.route('/logout')
+def logout():
+    # remove a sessão
+    session.pop('nome', None)
+    return redirect(url_for('index'))
 
 if(__name__ == "__main__"):
     app.run(debug=True)
