@@ -1,32 +1,46 @@
 {% extends 'components/navbar_user.html' %} 
-{% block title %}Home{% endblock %}
+{% block title %}Home Responsavel{% endblock %}
 
 {% block body %}
 
-<div class="container-fluid align-middle">
-  <!-- card de informações  -->
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Aluno(a)</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">Nome: <strong>{{data_aluno[1]}}</strong> </h6>
-        <p class="card-text">RA: <strong> {{ data_aluno[2] }} </strong></p>
-        <p class="card-text">QR Code: <button type="button">Baixar</button></p>
-        <p class="card-Text">Status: <strong> {{ False }} </strong></p>
+<div class="container-fluid">
+
+
+    <div class="row" style="margin: 15%;">
+
+      <div class="col-md" >
+        <!-- card-1 de informações  -->
+        <div class="row">
+
+          <!-- card-2 de informações  -->
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 text-body-secondary">Responsável: <strong>{{ usr[1] }}</strong></h6>
+              <p class="card-text">Responsavel Temporarios:  {{data_temp[0] }}</p>
+              <p class="card-text">QR code: <button>Baixar</button></p>
+            </div>
+          </div>
+
+        </div>    
       </div>
+      
+      <div class="col-md">
+
+        <!-- card-2 de informações  -->
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-body-secondary">Aluno(a): <strong>{{data_aluno[1]}}</strong> </h6>
+            <p class="card-text">RA: <strong> {{ data_aluno[2] }} </strong></p>
+            <p class="card-text">QR Code: <button type="button">Baixar</button></p>
+          </div>
+        </div> 
+
+      </div>
+
     </div>
 
-      <div class="row">
-        <h4>Responsável:</h4>
-        <div class="card" style="width: 18rem;">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Nome: <strong>{{ usr[1] }}</strong></li>
-            <!-- <li class="list-group-item">Responsavel por:</li> -->
-            <li class="list-group-item">Responsaveis temporarios:  {{data_temp[0] }}</li>
-            <li class="list-group-item">QR code: <button>Gerar</button></li>
-          </ul>
-        </div>
-      </div>
-  </div>
+    
 
+    
 </div>
 {% endblock  %}

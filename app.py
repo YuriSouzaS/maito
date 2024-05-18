@@ -117,21 +117,33 @@ def profileSchool():
 @app.route("/homeResponsavel", methods=['GET', 'POST'])
 def homeResponsavel():
     if 'email' in session:
+        
+        # Buscando usuário com base no email
         data_resp = select_user("responsavel", session['email'] )
+        
+        # Buscando aluno com base no email do seu responsavel
         data_aluno = buscar_alunos_resp("responsavel", session['email'] )
+        
         data_temp = contarRegistros("responsavel_aluno", "resp_temp", data_resp[0])
+        
         return render_template('user/homeResponsavel.html', usr=data_resp, data_aluno=data_aluno, data_temp=data_temp)
+    
     return f"You are not logged in"
 
 
 @app.get("/homeResponsavel/temporarios")
 def homeResponsavelTemp():
     if 'email' in session:
-        data_resp = select_user("responsavel", session['email'])
-        data_temp = buscar_temporario("responsavel_aluno", data_resp[0])
-        data = config.Temporario.formatarDados(data_temp)
+        try: 
+            data_resp = select_user("responsavel", session['email'])
+            data_temp = buscar_temporario("responsavel_aluno", data_resp[0])
+            data = config.Temporario.formatarDados(data_temp)
+        except:
+            return "Sem temporarios"
+
     return render_template("user/temporario/ResponsavelTemp.html", data_resp=data_resp, data_temp = data)
 
+    
 
 @app.route('/logout')
 def logout():
